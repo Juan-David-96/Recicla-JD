@@ -64,6 +64,7 @@ gem "sassc-rails"
 gem "activestorage"
 gem "figaro"
 gem "aws-sdk-s3"
+gem "kaminari"
 
 
 group :development, :test do

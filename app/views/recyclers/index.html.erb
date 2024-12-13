@@ -1,0 +1,35 @@
+<h1>Listado de Recicladores</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+<%= link_to 'Nuevo Reciclador', new_recycler_path, class: 'btn btn-primary' %>
+
+  <tbody>
+    <% @recyclers.each do |recycler| %>
+      <tr>
+        <td><%= recycler.name %></td>
+        <td><%= recycler.phone %></td>
+        <td><%= recycler.address %></td>
+        <td><%= recycler.email %></td>
+        <td>
+          <%= link_to 'Ver', recycler_path(recycler), class: 'btn btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Paginación -->
+<div class="pagination">
+  <%= paginate @recyclers %>
+</div>
+

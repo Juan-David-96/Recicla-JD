@@ -1,0 +1,32 @@
+<%= form_with(model: material) do |form| %>
+  <% if material.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+        <% material.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :recycler_id, style: "display: block" %>
+    <%= form.text_field :recycler_id %>
+  </div>
+
+  <div>
+    <%= form.label :material_type_id, style: "display: block" %>
+    <%= form.text_field :material_type_id %>
+  </div>
+
+  <div>
+    <%= form.label :delivery_date, style: "display: block" %>
+    <%= form.date_field :delivery_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

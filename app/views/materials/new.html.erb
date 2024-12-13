@@ -1,0 +1,11 @@
+<% content_for :title, "New material" %>
+
+<h1>New material</h1>
+
+<%= render "form", material: @material %>
+
+<br>
+
+<div>
+  <%= link_to "Back to materials", materials_path %>
+</div>

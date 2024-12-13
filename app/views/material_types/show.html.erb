@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @material_type %>
+
+<div>
+  <%= link_to "Edit this material type", edit_material_type_path(@material_type) %> |
+  <%= link_to "Back to material types", material_types_path %>
+
+  <%= button_to "Destroy this material type", @material_type, method: :delete %>
+</div>

@@ -2,15 +2,8 @@
     <h2 class="text-center">Registro</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
-            <div class="mb-3">
-            <%= f.label :images, "Agrega tu imagen de perfil", class: 'form-label' %>
-            <%= f.file_field :images, multiple: true, class: 'form-control' %>
-            <% if resource.errors[:images].any? %>
-                <div class="invalid-feedback"><%= resource.errors[:images].join(", ") %></div>
-            <% end %>
-            </div>
-
-
+        
+        <!-- Campo de nombre -->
         <div class="mb-3">
             <%= f.label :name, class: 'form-label' %>
             <%= f.text_field :name, autocomplete: "new-name", class: 'form-control', required: true %>
@@ -21,6 +14,7 @@
             <% end %>
         </div>
 
+        <!-- Campo de correo electrónico -->
         <div class="mb-3">
             <%= f.label :email, class: 'form-label' %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', required: true %>
@@ -31,6 +25,7 @@
             <% end %>
         </div>
 
+        <!-- Campo de contraseña -->
         <div class="mb-3">
             <%= f.label :password, class: 'form-label' %>
             <% if @minimum_password_length %>
@@ -44,6 +39,7 @@
             <% end %>
         </div>
 
+        <!-- Confirmar contraseña -->
         <div class="mb-3">
             <%= f.label :password_confirmation, class: 'form-label' %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true %>
@@ -53,6 +49,38 @@
             <div class="invalid-feedback">Por favor, confirma tu contraseña.</div>
         </div>
 
+        <!-- Campo de teléfono -->
+        <div class="mb-3">
+            <%= f.label :phone, class: 'form-label' %>
+            <%= f.telephone_field :phone, class: 'form-control', required: true %>
+            <% if resource.errors[:phone].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:phone].join(", ") %></div>
+            <% else %>
+                <div class="invalid-feedback">Por favor, ingresa un número de teléfono válido.</div>
+            <% end %>
+        </div>
+
+        <!-- Campo de dirección -->
+        <div class="mb-3">
+            <%= f.label :address, class: 'form-label' %>
+            <%= f.text_area :address, rows: 3, class: 'form-control', required: true %>
+            <% if resource.errors[:address].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:address].join(", ") %></div>
+            <% else %>
+                <div class="invalid-feedback">Por favor, ingresa una dirección válida.</div>
+            <% end %>
+        </div>
+
+        <!-- Campo de imágenes -->
+        <div class="mb-3">
+            <%= f.label :images, "Agrega tu imagen de perfil", class: 'form-label' %>
+            <%= f.file_field :images, multiple: true, class: 'form-control' %>
+            <% if resource.errors[:images].any? %>
+                <div class="invalid-feedback"><%= resource.errors[:images].join(", ") %></div>
+            <% end %>
+        </div>
+
+        <!-- Botón de envío -->
         <div class="text-center">
             <%= f.submit "Registrarse", class: 'btn btn-primary' %>
         </div>

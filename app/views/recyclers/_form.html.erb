@@ -1,0 +1,65 @@
+<%= form_with(model: recycler, class: "needs-validation", novalidate: true) do |form| %>
+  <% if recycler.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(recycler.errors.count, "error") %> prohibited this recycler from being saved:</h4>
+      <ul>
+        <% recycler.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", required: true %>
+    <% if recycler.errors[:name].any? %>
+      <div class="invalid-feedback"><%= recycler.errors[:name].join(", ") %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :phone, class: "form-label" %>
+    <%= form.text_field :phone, class: "form-control", required: true %>
+    <% if recycler.errors[:phone].any? %>
+      <div class="invalid-feedback"><%= recycler.errors[:phone].join(", ") %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :address, class: "form-label" %>
+    <%= form.text_field :address, class: "form-control", required: true %>
+    <% if recycler.errors[:address].any? %>
+      <div class="invalid-feedback"><%= recycler.errors[:address].join(", ") %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.email_field :email, class: "form-control", required: true %>
+    <% if recycler.errors[:email].any? %>
+      <div class="invalid-feedback"><%= recycler.errors[:email].join(", ") %></div>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit "Registrar Reciclador", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script>
+  // Validación personalizada de Bootstrap
+  (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>

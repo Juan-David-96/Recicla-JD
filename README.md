@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+con esto en el application_controller nos aseguramos que para acceder a cualquiera de las rutas el usuario este autentificado   
+before_action :authenticate_user!
 
-Things you may want to cover:
+con esto nos aseguramos del borrado en cascada, si se elimina el reciclador se eliminan los materiales asociados a el, lo mismo ocurre para el tipo de material
+has_many :materials, dependent: :destroy
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+para la paginacion usamos la gema kaminari

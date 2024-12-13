@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @recycler %>
+
+<div>
+  <%= link_to "Edit this recycler", edit_recycler_path(@recycler) %> |
+  <%= link_to "Back to recyclers", recyclers_path %>
+
+  <%= button_to "Destroy this recycler", @recycler, method: :delete %>
+</div>

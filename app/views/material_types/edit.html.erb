@@ -1,0 +1,12 @@
+<% content_for :title, "Editing material type" %>
+
+<h1>Editing material type</h1>
+
+<%= render "form", material_type: @material_type %>
+
+<br>
+
+<div>
+  <%= link_to "Show this material type", @material_type %> |
+  <%= link_to "Back to material types", material_types_path %>
+</div>

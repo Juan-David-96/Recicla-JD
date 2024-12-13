@@ -1,0 +1,12 @@
+<% content_for :title, "Editing recycler" %>
+
+<h1>Editing recycler</h1>
+
+<%= render "form", recycler: @recycler %>
+
+<br>
+
+<div>
+  <%= link_to "Show this recycler", @recycler %> |
+  <%= link_to "Back to recyclers", recyclers_path %>
+</div>

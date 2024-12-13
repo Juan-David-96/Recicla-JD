@@ -1,0 +1,27 @@
+<h1>Materiales Reciclados - <%= @recycler.name %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Tipo de Material</th>
+      <th>Descripción</th>
+      <th>Fecha de Entrega</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.material_type.name %></td>
+        <td><%= material.description %></td>
+        <td><%= material.delivery_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Paginación -->
+<div class="pagination">
+  <%= paginate @materials %>
+</div>
+
