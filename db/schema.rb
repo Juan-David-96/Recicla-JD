@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_13_222608) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_14_020101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_222608) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.bigint "recycler_id", null: false
+    t.bigint "material_id", null: false
+    t.date "delivery_date"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["material_id"], name: "index_deliveries_on_material_id"
+    t.index ["recycler_id"], name: "index_deliveries_on_recycler_id"
+  end
+
   create_table "material_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -49,14 +60,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_222608) do
   end
 
   create_table "materials", force: :cascade do |t|
-    t.bigint "recycler_id", null: false
     t.bigint "material_type_id", null: false
-    t.date "delivery_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+    t.string "name"
     t.index ["material_type_id"], name: "index_materials_on_material_type_id"
-    t.index ["recycler_id"], name: "index_materials_on_recycler_id"
   end
 
   create_table "recyclers", force: :cascade do |t|
@@ -86,6 +95,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_222608) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "deliveries", "materials"
+  add_foreign_key "deliveries", "recyclers"
   add_foreign_key "materials", "material_types"
-  add_foreign_key "materials", "recyclers"
 end

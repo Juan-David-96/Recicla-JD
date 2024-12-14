@@ -1,6 +1,5 @@
 class Recycler < ApplicationRecord
-    has_many :materials, dependent: :destroy
-
+    has_many :deliveries, dependent: :destroy
     validates :name, presence: true
     validates :phone, presence: true
     validates :address, presence: true

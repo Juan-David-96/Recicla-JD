@@ -1,0 +1,15 @@
+<% content_for :title, "Editar Entrega" %>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Editar Entrega</h1>
+
+  <%= render 'form', delivery: @delivery %>
+
+  <br>
+
+  <div class="d-flex justify-content-center">
+    <%= link_to "Ver Detalles", recycler_delivery_path(@recycler, @delivery), class: "btn btn-info mx-2" %> |
+    <%= link_to "Volver a las entregas", recycler_delivery_path(@recycler, @delivery), class: "btn btn-secondary mx-2" %>|
+    <%= button_to "Eliminar Entrega", recycler_delivery_path(@recycler, @delivery), method: :delete, data: { confirm: "¿Estás seguro de que quieres eliminar esta entrega?" }, class: "btn btn-danger mx-2" %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-<h1>Listado de Recicladores</h1>
+<h1>Lista de Recicladores</h1>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -20,16 +20,27 @@
         <td><%= recycler.phone %></td>
         <td><%= recycler.address %></td>
         <td><%= recycler.email %></td>
-        <td>
-          <%= link_to 'Ver', recycler_path(recycler), class: 'btn btn-info' %>
+        <td class="d-flex justify-content-evenly">
+        <!-- Botón para ingresar nueva entrega -->
+        <%= link_to new_recycler_delivery_path(recycler), class: 'btn btn-success btn-sm mx-2' do %>
+          Registrar Entrega
+        <% end %>
+
+        <!-- Botón para ver detalles de las entregas -->
+        <%= link_to recycler_deliveries_path(recycler), class: 'btn btn-info btn-sm mx-2' do %>
+          Ver Entregas
+        <% end %>
+
+        <!-- Botón para editar el reciclador -->
+        <%= link_to edit_recycler_path(recycler), class: 'btn btn-warning btn-sm mx-2' do %>
+          Editar Reciclador
+        <% end %>
+
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<!-- Paginación -->
-<div class="pagination">
+<div class="d-flex justify-content-center">
   <%= paginate @recyclers %>
 </div>
-

@@ -1,7 +1,10 @@
 class Material < ApplicationRecord
-  belongs_to :recycler
   belongs_to :material_type
+  has_many :deliveries
+  has_many :recyclers, through: :deliveries
 
-  validates :delivery_date, presence: true
+  validates :name, presence: true
   validates :description, presence: true
+  validates :material_type, presence: true
 end
+

@@ -1,10 +1,10 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: %i[ show edit update destroy ]
+  before_action :set_recycler
 
   # GET /materials or /materials.json
   def index
-    @recycler = Recycler.find(params[:recycler_id])  # Asumiendo que los materiales están asociados a un reciclador
-    @materials = @recycler.materials.page(params[:page]).per(10)
+    @materials = @recycler.deliveries.includes(:material).map(&:material).uniq.page(params[:page]).per(10)
   end
 
   # GET /materials/1 or /materials/1.json
@@ -63,7 +63,9 @@ class MaterialsController < ApplicationController
     def set_material
       @material = Material.find(params[:id])
     end
-
+    def set_recycler
+      @recycler = Recycler.find(params[:recycler_id])
+    end
     # Only allow a list of trusted parameters through.
     def material_params
       params.require(:material).permit(:recycler_id, :material_type_id, :delivery_date)

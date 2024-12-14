@@ -1,12 +1,15 @@
-<% content_for :title, "Editing recycler" %>
+<% content_for :title, "Editar reciclador" %>
 
-<h1>Editing recycler</h1>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Editar Reciclador</h1>
 
-<%= render "form", recycler: @recycler %>
+  <%= render "form", recycler: @recycler %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this recycler", @recycler %> |
-  <%= link_to "Back to recyclers", recyclers_path %>
+  <div class="d-flex justify-content-center">
+    <%= link_to "Ver este reciclador", @recycler, class: "btn btn-info mx-2" %> |
+    <%= link_to "Volver a la lista de recicladores", recyclers_path, class: "btn btn-secondary mx-2" %> |
+    <%= link_to "Eliminar reciclador", recycler_path(@recycler), method: :delete, data: { confirm: '¿Estás seguro de que quieres eliminar este reciclador?' }, class: "btn btn-danger mx-2" %>
+  </div>
 </div>

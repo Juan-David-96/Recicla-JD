@@ -1,0 +1,41 @@
+<h1 class="text-center">Registrar nueva entrega para <%= @recycler.name %></h1>
+
+<div class="container d-flex justify-content-center">
+  <div class="col-md-6">
+    <%= form_with(model: @delivery, url: recycler_deliveries_path(@recycler)) do |form| %>
+      <% if @delivery.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(@delivery.errors.count, "error") %> prohibió que se guardara la entrega:</h2>
+          <ul>
+            <% @delivery.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :material_id, "Material" %>
+        <%= form.collection_select :material_id, Material.all, :id, :name, { prompt: 'Selecciona un material' }, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :delivery_date, "Fecha de entrega" %>
+        <%= form.date_field :delivery_date, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :quantity, "Cantidad entregada en gramos" %>
+        <%= form.number_field :quantity, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group d-flex justify-content-center">
+        <%= form.submit "Registrar Entrega", class: 'btn btn-primary my-4' %>
+      </div>
+    <% end %>
+
+    <div class="d-flex justify-content-center">
+      <%= link_to 'Volver a las entregas', recycler_deliveries_path(@recycler), class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

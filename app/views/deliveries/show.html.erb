@@ -1,0 +1,7 @@
+<h1>Detalles de la entrega</h1>
+
+<p><strong>Material:</strong> <%= @delivery.material.name %></p>
+<p><strong>Fecha de entrega:</strong> <%= @delivery.delivery_date %></p>
+<p><strong>Cantidad entregada:</strong> <%= @delivery.quantity %></p>
+
+<%= link_to 'Volver a las entregas', recycler_deliveries_path(@recycler), class: 'btn btn-secondary' %>
