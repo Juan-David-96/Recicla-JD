@@ -1,11 +1,11 @@
-<% content_for :title, "New material type" %>
+<% content_for :title, "Nuevo Tipo de Material" %>
 
-<h1>New material type</h1>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">New Material Type</h1>
 
-<%= render "form", material_type: @material_type %>
+  <%= render "form", material_type: @material_type %>
 
-<br>
-
-<div>
-  <%= link_to "Back to material types", material_types_path %>
+  <div class="mt-4">
+    <%= link_to "Volver a Tipos de Materiales", material_types_path, class: 'btn btn-secondary' %>
+  </div>
 </div>

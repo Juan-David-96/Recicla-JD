@@ -47,14 +47,13 @@ class MaterialTypesController < ApplicationController
     end
   end
 
-  # DELETE /material_types/1 or /material_types/1.json
-  # def destroy
-  #   @material_type.destroy! 
-  #   respond_to do |format|
-  #     format.html { redirect_to material_types_path, status: :see_other, notice: "Material type was successfully destroyed." }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    @material_type.destroy
+    respond_to do |format|
+      format.html { redirect_to material_types_url, notice: "Material type was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

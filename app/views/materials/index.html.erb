@@ -3,6 +3,9 @@
 <div class="mb-3">
   <%= link_to 'Nuevo Material', new_material_path, class: 'btn btn-success' %>
 </div>
+<div class="mb-3">
+  <%= link_to 'Nuevo Tipo de Material', new_material_type_path, class: 'btn btn-primary' %>
+</div>
 
 <!-- Formulario de búsqueda -->
 <%= form_with url: materials_path, method: :get, local: true, class: "mb-4" do %>
@@ -19,6 +22,7 @@
       <th>Tipo</th>
       <th>Reciclador</th>
       <th>Cantidad Total</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +35,9 @@
         </td>
         <td>
           <%= material.deliveries.sum(:quantity) %> gramos
+        </td>
+        <td>
+          <%= link_to 'Mostrar Material', material_path(material), class: 'btn btn-info' %>
         </td>
       </tr>
     <% end %>

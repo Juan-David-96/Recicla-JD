@@ -14,6 +14,7 @@ class MaterialsController < ApplicationController
 
   # GET /materials/1 or /materials/1.json
   def show
+    @material = Material.find(params[:id])
   end
 
   # GET /materials/new

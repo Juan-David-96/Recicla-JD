@@ -1,10 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @material %>
-
-<div>
-  <%= link_to "Edit this material", edit_material_path(@material) %> |
-  <%= link_to "Back to materials", materials_path %>
-
-  <%= button_to "Destroy this material", @material, method: :delete %>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h3>Detalles del Material</h3>
+    </div>
+    <div class="card-body">
+      <%= render @material %>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Editar este material", edit_material_path(@material), class: 'btn btn-warning btn-sm' %>
+      <%= link_to "Volver a materiales", materials_path, class: 'btn btn-secondary btn-sm' %>
+    </div>
+  </div>
 </div>
+

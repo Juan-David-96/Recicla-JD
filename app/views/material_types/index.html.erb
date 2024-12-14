@@ -1,16 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Material types" %>
+<% content_for :title, "Tipos de Material" %>
 
-<h1>Material types</h1>
+<h1>Tipos de Material</h1>
 
 <div id="material_types">
   <% @material_types.each do |material_type| %>
     <%= render material_type %>
     <p>
-      <%= link_to "Show this material type", material_type %>
+      <%= link_to "Ver este tipo de material", material_type, class: "btn btn-info" %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New material type", new_material_type_path %>
+<%= link_to "Nuevo tipo de material", new_material_type_path, class: "btn btn-success" %>
