@@ -1,2 +1,48 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<!-- app/views/pages/index.html.erb -->
+<div class="container mt-5">
+  <h1 class="text-center">Página Principal</h1>
+
+  <div class="row">
+    <!-- Cantidad de recicladores -->
+    <div class="col-md-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Cantidad de Recicladores</div>
+        <div class="card-body">
+          <h5 class="card-title"><%= @recyclers_count %></h5>
+          <p class="card-text">Este es el número total de recicladores registrados.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total de entregas -->
+    <div class="col-md-4">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-header">Total de Entregas de Materiales</div>
+        <div class="card-body">
+          <h5 class="card-title"><%= @total_deliveries %></h5>
+          <p class="card-text">Este es el número total de entregas realizadas de materiales.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entregas por Tipo de Material -->
+    <div class="col-md-4">
+      <div class="card text-white bg-info mb-3">
+        <div class="card-header">Entregas por Tipo de Material</div>
+        <div class="card-body">
+          <% if @deliveries_by_type.any? %>
+            <ul class="list-group">
+              <% @deliveries_by_type.each do |item| %>
+                <li class="list-group-item">
+                  <%= item[:material_name] %> (Tipo: <%= item[:type_name] %>): <%= item[:total] %> gramos
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="card-text">No hay datos disponibles para los tipos de materiales.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,13 @@
-<% content_for :title, "New material" %>
+<% content_for :title, "Nuevo material" %>
 
-<h1>New material</h1>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Nuevo Material</h1>
 
-<%= render "form", material: @material %>
+  <%= render "form", material: @material %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to materials", materials_path %>
+  <div class="d-flex justify-content-center">
+    <%= link_to "Volver a materiales", materials_path, class: "btn btn-secondary" %>
+  </div>
 </div>

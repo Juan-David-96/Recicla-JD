@@ -1,27 +1,38 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <%= link_to 'BASE', pages_index_path, class: "logo" %>
-        <div  class="navbar_saludo">
-                    <% if user_signed_in? %>
-                        Hola <%= current_user.email %>
-                    <% else %>  
-                        Dale registrate o conectate
-                    <% end %>
-            </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <%= link_to 'Reciclaje', pages_index_path, class: "navbar-brand logo" %>
+        
+        <!-- Saludo del usuario -->
+        <div class="navbar_saludo">
+            <% if user_signed_in? %>
+                Hola <%= current_user.email %>
+            <% else %>  
+                Dale registrate o conectate
+            <% end %>
+        </div>
+        
+        <!-- Botón de menú para dispositivos móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <!-- Menú desplegable -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto mx-4 mb-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle menu" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">Menú</a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-start">
                         <% if user_signed_in? %>
-                             <li class="nav-item">
-                             <%# 
-                                 <%= link_to 'Tus reacciones', my_reactions_path, class: 'dropdown-item' %>
+                            <li>
+                                <%= link_to 'Recicladores', recyclers_path, class: 'dropdown-item' %>
+                            </li>
+                            <li>
+                                <%= link_to 'Materiales', materials_path, class: 'dropdown-item' %>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
                             </li>
                             <li>
                                 <%= button_to 'Cerrar sesión', destroy_user_session_path, class: 'dropdown-item',
@@ -44,4 +55,3 @@
         </div>
     </div>
 </nav>
-<%#  %>

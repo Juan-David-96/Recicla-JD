@@ -1,10 +1,15 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: %i[ show edit update destroy ]
-  before_action :set_recycler
 
   # GET /materials or /materials.json
   def index
-    @materials = @recycler.deliveries.includes(:material).map(&:material).uniq.page(params[:page]).per(10)
+    if params[:search].present?
+      @materials = Material.where("name ILIKE ? OR description ILIKE ?", 
+                                  "%#{params[:search]}%", "%#{params[:search]}%")
+                           .page(params[:page]).per(10)
+    else
+      @materials = Material.all.page(params[:page]).per(10)
+    end
   end
 
   # GET /materials/1 or /materials/1.json
@@ -23,15 +28,10 @@ class MaterialsController < ApplicationController
   # POST /materials or /materials.json
   def create
     @material = Material.new(material_params)
-
-    respond_to do |format|
-      if @material.save
-        format.html { redirect_to @material, notice: "Material was successfully created." }
-        format.json { render :show, status: :created, location: @material }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @material.errors, status: :unprocessable_entity }
-      end
+    if @material.save
+      redirect_to materials_path, notice: 'Material creado con éxito.'
+    else
+      render :new
     end
   end
 
@@ -63,11 +63,8 @@ class MaterialsController < ApplicationController
     def set_material
       @material = Material.find(params[:id])
     end
-    def set_recycler
-      @recycler = Recycler.find(params[:recycler_id])
-    end
     # Only allow a list of trusted parameters through.
     def material_params
-      params.require(:material).permit(:recycler_id, :material_type_id, :delivery_date)
+      params.require(:material).permit(:name, :description, :material_type_id)
     end
 end

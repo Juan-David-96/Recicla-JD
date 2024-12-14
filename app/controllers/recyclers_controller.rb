@@ -3,7 +3,13 @@ class RecyclersController < ApplicationController
 
   # GET /recyclers or /recyclers.json
   def index
-    @recyclers = Recycler.page(params[:page]).per(10)
+    if params[:search].present?
+      @recyclers = Recycler.where("name ILIKE ? OR phone ILIKE ? OR address ILIKE ? OR email ILIKE ?", 
+                                  "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+                           .page(params[:page]).per(10)
+    else
+      @recyclers = Recycler.all.page(params[:page]).per(10)
+    end
   end
 
   # GET /recyclers/1 or /recyclers/1.json
@@ -49,12 +55,9 @@ class RecyclersController < ApplicationController
 
   # DELETE /recyclers/1 or /recyclers/1.json
   def destroy
-    @recycler.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to recyclers_path, status: :see_other, notice: "Recycler was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @recycler = Recycler.find(params[:id])
+    @recycler.destroy
+    redirect_to recyclers_path, notice: "Reciclador eliminado correctamente."
   end
 
   private

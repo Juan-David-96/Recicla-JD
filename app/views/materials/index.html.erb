@@ -1,27 +1,44 @@
-<h1>Materiales Reciclados - <%= @recycler.name %></h1>
+<h1>Materiales Reciclados</h1>
 
-<table class="table">
+<div class="mb-3">
+  <%= link_to 'Nuevo Material', new_material_path, class: 'btn btn-success' %>
+</div>
+
+<!-- Formulario de búsqueda -->
+<%= form_with url: materials_path, method: :get, local: true, class: "mb-4" do %>
+  <div class="input-group">
+    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Buscar material..." %>
+    <button class="btn btn-primary" type="submit">Buscar</button>
+  </div>
+<% end %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Material</th>
-      <th>Tipo de Material</th>
-      <th>Descripción</th>
-      <th>Fecha de Entrega</th>
+      <th>Tipo</th>
+      <th>Reciclador</th>
+      <th>Cantidad Total</th>
     </tr>
   </thead>
   <tbody>
     <% @materials.each do |material| %>
       <tr>
+        <td><%= material.name %></td>
         <td><%= material.material_type.name %></td>
-        <td><%= material.description %></td>
-        <td><%= material.delivery_date %></td>
+        <td>
+          <%= material.deliveries.map { |delivery| delivery.recycler.name }.uniq.join(", ") %>
+        </td>
+        <td>
+          <%= material.deliveries.sum(:quantity) %> gramos
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <!-- Paginación -->
-<div class="pagination">
+<div class="d-flex justify-content-center">
   <%= paginate @materials %>
 </div>
 

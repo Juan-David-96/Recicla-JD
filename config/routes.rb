@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   resources :recyclers do
-    resources :materials, only: [:index]
     resources :deliveries, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
+  resources :materials
   resources :material_types
   devise_for :users, controllers: 
   { sessions: 'users/sessions', registrations: 'users/registrations' }
   get "pages/index"
+  devise_scope :user do
+    get 'users/sign_up', to: redirect('pages/index') # Redirige a la página principal si el usuario está autenticado
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

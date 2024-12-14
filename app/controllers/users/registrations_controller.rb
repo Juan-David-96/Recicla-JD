@@ -3,6 +3,18 @@
 class Users::RegistrationsController < Devise::RegistrationsController
  before_action :configure_sign_up_params, only: [:create]
  before_action :configure_account_update_params, only: [:update]
+ before_action :redirect_if_logged_in, only: [:new, :create]
+ before_action :restrict_registration_access, only: [:new, :create]
+
+ def restrict_registration_access
+   redirect_to root_path, alert: "El registro está deshabilitado." 
+ end
+
+ def redirect_if_logged_in
+   if user_signed_in?
+     redirect_to root_path, alert: "Ya estás registrado y conectado."
+   end
+ end
 
   # GET /resource/sign_up
   # def new
@@ -38,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params

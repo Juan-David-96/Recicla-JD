@@ -3,7 +3,16 @@ class DeliveriesController < ApplicationController
     before_action :set_delivery, only: [:show, :edit, :update, :destroy]
   
     def index
-        @deliveries = @recycler.deliveries.page(params[:page]).per(10)
+      @search = params[:search]
+      # Filtramos las entregas por nombre del material, cantidad o fecha si el parámetro de búsqueda existe
+      @deliveries = @recycler.deliveries.includes(:material)
+      
+      if @search.present?
+        @deliveries = @deliveries.joins(:material)
+                                 .where("materials.name ILIKE ?", "%#{@search}%")
+                                 .or(@deliveries.where("quantity::text ILIKE ?", "%#{@search}%"))
+      end
+      @deliveries = @deliveries.page(params[:page])
     end
 
     def edit

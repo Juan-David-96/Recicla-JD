@@ -25,7 +25,7 @@
     font-size: 25px;
 }
 .navbar {
-    background-color: #343a40 !important; /* Fondo del navbar */
+    background-color: green !important;
 }
 
 .navbar_saludo {
@@ -37,27 +37,33 @@
 }
 
 .navbar .nav-link {
-    color: #ffffff !important; /* Color del texto principal */
+    color: #ffffff !important;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active,
 .logo:hover {
-    color: #007bff !important; /* Color en hover o activo */
+    color: #ffcc00 !important;
 }
 
 .dropdown-menu {
-    background-color: #ffffff !important; /* Fondo del menú desplegable */
-    border: 1px solid #dee2e6; /* Borde del menú desplegable */
-    position: absolute; /* Asegúrate de que esté en posición absoluta */
-    left: -55px !important; /* Alinea a la izquierda del elemento padre */ 
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6; 
+    position: absolute;
 }
+
+@media (min-width: 992px) {
+    .dropdown-menu {
+        left: -80px;
+    }
+}
+
 .dropdown-item {
     font-size: 20px;
-    color: #212529 !important; /* Color del texto del menú desplegable */
+    color: #212529 !important;
 }
 .dropdown-item:hover {
-    background-color: #007bff; /* Fondo al pasar el mouse sobre el menú desplegable */
+    background-color: #ffcc00;
     color: #ffffff !important;
 }
 .dropdown:hover .dropdown-menu {

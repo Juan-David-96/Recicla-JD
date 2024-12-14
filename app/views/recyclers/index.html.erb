@@ -1,46 +1,61 @@
-<h1>Lista de Recicladores</h1>
+<% content_for :title, "Lista de Recicladores" %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Teléfono</th>
-      <th>Dirección</th>
-      <th>Email</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Lista de Recicladores</h1>
 
-<%= link_to 'Nuevo Reciclador', new_recycler_path, class: 'btn btn-primary' %>
+  <!-- Formulario de búsqueda -->
+  <%= form_with url: recyclers_path, method: :get, local: true, class: "mb-4" do %>
+    <div class="input-group">
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Buscar reciclador..." %>
+      <button class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+  <% end %>
 
-  <tbody>
-    <% @recyclers.each do |recycler| %>
+  <!-- Botón para agregar un nuevo reciclador -->
+  <%= link_to 'Nuevo Reciclador', new_recycler_path, class: 'btn btn-primary mb-3' %>
+
+  <!-- Tabla de recicladores -->
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= recycler.name %></td>
-        <td><%= recycler.phone %></td>
-        <td><%= recycler.address %></td>
-        <td><%= recycler.email %></td>
-        <td class="d-flex justify-content-evenly">
-        <!-- Botón para ingresar nueva entrega -->
-        <%= link_to new_recycler_delivery_path(recycler), class: 'btn btn-success btn-sm mx-2' do %>
-          Registrar Entrega
-        <% end %>
-
-        <!-- Botón para ver detalles de las entregas -->
-        <%= link_to recycler_deliveries_path(recycler), class: 'btn btn-info btn-sm mx-2' do %>
-          Ver Entregas
-        <% end %>
-
-        <!-- Botón para editar el reciclador -->
-        <%= link_to edit_recycler_path(recycler), class: 'btn btn-warning btn-sm mx-2' do %>
-          Editar Reciclador
-        <% end %>
-
-        </td>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Email</th>
+        <th>Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="d-flex justify-content-center">
-  <%= paginate @recyclers %>
+    </thead>
+
+    <tbody>
+      <% @recyclers.each do |recycler| %>
+        <tr>
+          <td><%= recycler.name %></td>
+          <td><%= recycler.phone %></td>
+          <td><%= recycler.address %></td>
+          <td><%= recycler.email %></td>
+          <td class="d-flex justify-content-evenly">
+            <!-- Botón para ingresar nueva entrega -->
+            <%= link_to new_recycler_delivery_path(recycler), class: 'btn btn-success btn-sm mx-2' do %>
+              Registrar Entrega
+            <% end %>
+
+            <!-- Botón para ver detalles de las entregas -->
+            <%= link_to recycler_deliveries_path(recycler), class: 'btn btn-info btn-sm mx-2' do %>
+              Ver Entregas
+            <% end %>
+
+            <!-- Botón para editar el reciclador -->
+            <%= link_to edit_recycler_path(recycler), class: 'btn btn-warning btn-sm mx-2' do %>
+              Editar Reciclador
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!-- Paginación -->
+  <div class="d-flex justify-content-center">
+    <%= paginate @recyclers %>
+  </div>
 </div>
