@@ -3,14 +3,16 @@ class RecyclersController < ApplicationController
 
   # GET /recyclers or /recyclers.json
   def index
+    items_per_page = params[:per] || 10 # Por defecto 10, 5 en dispositivos pequeños
     if params[:search].present?
       @recyclers = Recycler.where("name ILIKE ? OR phone ILIKE ? OR address ILIKE ? OR email ILIKE ?", 
                                   "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
-                           .page(params[:page]).per(10)
+                           .page(params[:page]).per(items_per_page)
     else
-      @recyclers = Recycler.all.page(params[:page]).per(10)
+      @recyclers = Recycler.all.page(params[:page]).per(items_per_page)
     end
   end
+  
 
   # GET /recyclers/1 or /recyclers/1.json
   def show

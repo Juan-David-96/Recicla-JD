@@ -14,8 +14,9 @@
   <!-- Botón para agregar un nuevo reciclador -->
   <%= link_to 'Nuevo Reciclador', new_recycler_path, class: 'btn btn-primary mb-3' %>
 
-  <!-- Tabla de recicladores -->
-  <table class="table table-striped">
+<!-- Tabla de recicladores -->
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -33,19 +34,19 @@
           <td><%= recycler.phone %></td>
           <td><%= recycler.address %></td>
           <td><%= recycler.email %></td>
-          <td class="d-flex justify-content-evenly">
+          <td class="d-flex flex-wrap justify-content-evenly">
             <!-- Botón para ingresar nueva entrega -->
-            <%= link_to new_recycler_delivery_path(recycler), class: 'btn btn-success btn-sm mx-2' do %>
+            <%= link_to new_recycler_delivery_path(recycler), class: 'btn btn-success btn-sm mx-2 my-1' do %>
               Registrar Entrega
             <% end %>
 
             <!-- Botón para ver detalles de las entregas -->
-            <%= link_to recycler_deliveries_path(recycler), class: 'btn btn-info btn-sm mx-2' do %>
+            <%= link_to recycler_deliveries_path(recycler), class: 'btn btn-info btn-sm mx-2 my-1' do %>
               Ver Entregas
             <% end %>
 
             <!-- Botón para editar el reciclador -->
-            <%= link_to edit_recycler_path(recycler), class: 'btn btn-warning btn-sm mx-2' do %>
+            <%= link_to edit_recycler_path(recycler), class: 'btn btn-warning btn-sm mx-2 my-1' do %>
               Editar Reciclador
             <% end %>
           </td>
@@ -53,6 +54,8 @@
       <% end %>
     </tbody>
   </table>
+</div>
+
 
   <!-- Paginación -->
   <div class="d-flex justify-content-center">
